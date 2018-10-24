@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 35px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Rubik', 'Optima', 'Trebuchet MS', sans-serif;
+  font-size: 2.5rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Rubik', 'Optima', 'Trebuchet MS', sans-serif;
+}
+
+h3{
+  font-family: 'Rubik', 'Optima', 'Trebuchet MS', sans-serif;
+}
+
+p{
+  font-family: 'Crimson Text', 'Georgia', serif;
+  font-size: .9rem;
+}
+
+article{
+  max-width: 800px;
+  margin: auto;
+}
+
+#box {
+	min-width: 360px;
+	max-width: 650px;
+	margin: 0 auto;
+}
+
+#container{
+  height: 600px;
+}
+
+
+@media screen and (max-width: 575px) {
+  div.box {
+    height: 1000px;
+  }
+  body{
+    padding: 1.3rem;
+  }
+
+}

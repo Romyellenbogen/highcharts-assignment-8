@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hate Crime charts</title>
+  <link rel ="stylesheet" href = "styles/project.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/tilemap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<body>
+
+<article>
+  <h1>
+    Hate Crimes in the United States
+  </h1>
+  <h2>
+    By Romy Ellenbogen
+  </h2>
+
+    <div id="container"></div>
+
+<p><a href="https://ucr.fbi.gov/hate-crime/2016">Source: FBI</a></p>
+<h3>
+  Hate Crimes in 2016 by type of bias
+</h3>
+<p>This chart shows hate crimes, as reported to the FBI from local police agencies. Though there are other crimes based on bias, like on Anti-Arab sentiment or anti-multiracial sentiment, the majority of crimes happen to either white or black individuals. For nearly every race, intimidation was the most common crime, except for those crimes committed because of Anti-White sentiment. Black people far and away faced the most hate crimes. With constant discussions of race in the country, this data shows how many times a certain group is targeted for no reason other than bias against their race or ethnicity. Something to be considered is that not every police agency will accurately report and the difference in population sizes among racial groups in the United States.</p>
+
+<div id = "box"></div>
+
+<p><a href="https://ucr.fbi.gov/hate-crime/2016">Source: FBI</a></p>
+
+<h3>
+  Hate crimes reported in 2016 by state
+</h3>
+<p>This chart shows how many incidents of a hate crime there were reported in each state to the FBI. Reported is the key word, because not all police agencies may consider a certain crime a hate crime. Because of this, the numbers may not be truly reflective of the entire situation. Only a certain number of police agencies report numbers as well. Not unsurprisingly, states with higher populations had a large amount of reports, with no clear geographical concentration of hate crimes.</p>
+</article>
+
+
+  <script>
+  Highcharts.chart('container', {
+      chart: {
+          type: 'bar'
+      },
+      title: {
+          text: 'Hate Crimes in 2016 by type of bias'
+      },
+      subtitle: {
+          text: 'Source: <a href="https://ucr.fbi.gov/hate-crime/2016">FBI</a>'
+      },
+      xAxis: {
+          categories: ['Anti-White', 'Anti-Black', 'Anti-Asian', 'Anti-Hispanic', 'Anti-American Indian'],
+          title: {
+              text: null
+          }
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Number of crimes',
+              align: 'high'
+          },
+          labels: {
+              overflow: 'justify'
+          }
+      },
+      tooltip: {
+          valueSuffix: ' crimes'
+      },
+      plotOptions: {
+          bar: {
+              dataLabels: {
+                  enabled: true
+              }
+          }
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'center',
+          verticalAlign: 'bottom',
+          /* x: 0,
+          y: 0,
+          floating: true,
+       borderWidth: 1, */
+          backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+          shadow: false
+      },
+      credits: {
+          enabled: false
+      },
+      series: [{
+          name: 'Aggravated Assault',
+          data: [120, 273, 15, 91, 8]
+      }, {
+          name: 'Simple Assault',
+          data: [241, 455, 40, 129, 17]
+      }, {
+          name: 'Intimidation',
+          data: [188, 782, 45, 140, 36]
+      }]
+  });
+  </script>
+
+  <script>
+  Highcharts.chart('box', {
+      chart: {
+          type: 'tilemap',
+          inverted: true,
+          height: '100%'
+      },
+
+      title: {
+          text: 'Number of reported incidents by state'
+      },
+
+      subtitle: {
+          text: 'Source:<a href="https://ucr.fbi.gov/hate-crime/2016">FBI</a>'
+      },
+
+      xAxis: {
+          visible: false
+      },
+
+      yAxis: {
+          visible: false
+      },
+
+      colorAxis: {
+          dataClasses: [{
+              from: 0,
+              to: 50,
+              color: '#F9EDB3',
+              name: '< 50'
+          }, {
+              from: 50,
+              to: 125,
+              color: '#FFC428',
+              name: '50 - 125'
+          }, {
+              from: 125,
+              to: 200,
+              color: '#ff6f56',
+              name: '125 - 200'
+          }, {
+              from: 200,
+              to: 275,
+              color: '#ff5692',
+              name: '200 - 275'
+          }, {
+           		from: 275,
+              color: '#FF2371',
+              name: '> 275'
+          }]
+      },
+
+      tooltip: {
+          headerFormat: '',
+          pointFormat: 'The number of reported incidents in <b> {point.name}</b> is <b>{point.value}</b>'
+      },
+
+      plotOptions: {
+          series: {
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.hc-a2}',
+                  color: '#000000',
+                  style: {
+                      textOutline: false
+                  }
+              }
+          }
+      },
+
+      series: [{
+          name: '',
+          data: [{
+              'hc-a2': 'AL',
+              name: 'Alabama',
+              region: 'South',
+              x: 6,
+              y: 7,
+              value: 11
+          }, {
+              'hc-a2': 'AK',
+              name: 'Alaska',
+              region: 'West',
+              x: 0,
+              y: 0,
+              value: 11
+          }, {
+              'hc-a2': 'AZ',
+              name: 'Arizona',
+              region: 'West',
+              x: 5,
+              y: 3,
+              value: 213
+          }, {
+              'hc-a2': 'AR',
+              name: 'Arkansas',
+              region: 'South',
+              x: 5,
+              y: 6,
+              value: 12
+          }, {
+              'hc-a2': 'CA',
+              name: 'California',
+              region: 'West',
+              x: 5,
+              y: 2,
+              value: 931
+          }, {
+              'hc-a2': 'CO',
+              name: 'Colorado',
+              region: 'West',
+              x: 4,
+              y: 3,
+              value: 104
+          }, {
+              'hc-a2': 'CT',
+              name: 'Connecticut',
+              region: 'Northeast',
+              x: 3,
+              y: 11,
+              value: 106
+          }, {
+              'hc-a2': 'DE',
+              name: 'Delaware',
+              region: 'South',
+              x: 4,
+              y: 9,
+              value: 15
+          }, {
+              'hc-a2': 'DC',
+              name: 'District of Columbia',
+              region: 'South',
+              x: 4,
+              y: 10,
+              value: 115
+          }, {
+              'hc-a2': 'FL',
+              name: 'Florida',
+              region: 'South',
+              x: 8,
+              y: 8,
+              value: 96
+          }, {
+              'hc-a2': 'GA',
+              name: 'Georgia',
+              region: 'South',
+              x: 7,
+              y: 8,
+              value: 39
+          }, {
+              'hc-a2': 'ID',
+              name: 'Idaho',
+              region: 'West',
+              x: 3,
+              y: 2,
+              value: 27
+          }, {
+              'hc-a2': 'IL',
+              name: 'Illinois',
+              region: 'Midwest',
+              x: 3,
+              y: 6,
+              value: 111
+          }, {
+              'hc-a2': 'IN',
+              name: 'Indiana',
+              region: 'Midwest',
+              x: 3,
+              y: 7,
+              value: 78
+          }, {
+              'hc-a2': 'IA',
+              name: 'Iowa',
+              region: 'Midwest',
+              x: 3,
+              y: 5,
+              value: 17
+          }, {
+              'hc-a2': 'KS',
+              name: 'Kansas',
+              region: 'Midwest',
+              x: 5,
+              y: 5,
+              value: 49
+          }, {
+              'hc-a2': 'KY',
+              name: 'Kentucky',
+              region: 'South',
+              x: 4,
+              y: 6,
+              value: 206
+          }, {
+              'hc-a2': 'LA',
+              name: 'Louisiana',
+              region: 'South',
+              x: 6,
+              y: 5,
+              value: 26
+          }, {
+              'hc-a2': 'ME',
+              name: 'Maine',
+              region: 'Northeast',
+              x: 0,
+              y: 11,
+              value: 40
+          }, {
+              'hc-a2': 'MD',
+              name: 'Maryland',
+              region: 'South',
+              x: 4,
+              y: 8,
+              value: 37
+          }, {
+              'hc-a2': 'MA',
+              name: 'Massachusetts',
+              region: 'Northeast',
+              x: 2,
+              y: 10,
+              value: 391
+          }, {
+              'hc-a2': 'MI',
+              name: 'Michigan',
+              region: 'Midwest',
+              x: 2,
+              y: 7,
+              value: 399
+          }, {
+              'hc-a2': 'MN',
+              name: 'Minnesota',
+              region: 'Midwest',
+              x: 2,
+              y: 4,
+              value: 119
+          }, {
+              'hc-a2': 'MS',
+              name: 'Mississippi',
+              region: 'South',
+              x: 6,
+              y: 6,
+              value: 7
+          }, {
+              'hc-a2': 'MO',
+              name: 'Missouri',
+              region: 'Midwest',
+              x: 4,
+              y: 5,
+              value: 88
+          }, {
+              'hc-a2': 'MT',
+              name: 'Montana',
+              region: 'West',
+              x: 2,
+              y: 2,
+              value: 20
+          }, {
+              'hc-a2': 'NE',
+              name: 'Nebraska',
+              region: 'Midwest',
+              x: 4,
+              y: 4,
+              value: 31
+          }, {
+              'hc-a2': 'NV',
+              name: 'Nevada',
+              region: 'West',
+              x: 4,
+              y: 2,
+              value: 41
+          }, {
+              'hc-a2': 'NH',
+              name: 'New Hampshire',
+              region: 'Northeast',
+              x: 1,
+              y: 11,
+              value: 28
+          }, {
+              'hc-a2': 'NJ',
+              name: 'New Jersey',
+              region: 'Northeast',
+              x: 3,
+              y: 10,
+              value: 282
+          }, {
+              'hc-a2': 'NM',
+              name: 'New Mexico',
+              region: 'West',
+              x: 6,
+              y: 3,
+              value: 26
+          }, {
+              'hc-a2': 'NY',
+              name: 'New York',
+              region: 'Northeast',
+              x: 2,
+              y: 9,
+              value: 595
+          }, {
+              'hc-a2': 'NC',
+              name: 'North Carolina',
+              region: 'South',
+              x: 5,
+              y: 9,
+              value: 148
+          }, {
+              'hc-a2': 'ND',
+              name: 'North Dakota',
+              region: 'Midwest',
+              x: 2,
+              y: 3,
+              value: 8
+          }, {
+              'hc-a2': 'OH',
+              name: 'Ohio',
+              region: 'Midwest',
+              x: 3,
+              y: 8,
+              value: 442
+          }, {
+              'hc-a2': 'OK',
+              name: 'Oklahoma',
+              region: 'South',
+              x: 6,
+              y: 4,
+              value: 33
+          }, {
+              'hc-a2': 'OR',
+              name: 'Oregon',
+              region: 'West',
+              x: 4,
+              y: 1,
+              value: 104
+          }, {
+              'hc-a2': 'PA',
+              name: 'Pennsylvania',
+              region: 'Northeast',
+              x: 3,
+              y: 9,
+              value: 61
+          }, {
+              'hc-a2': 'RI',
+              name: 'Rhode Island',
+              region: 'Northeast',
+              x: 2,
+              y: 11,
+              value: 12
+          }, {
+              'hc-a2': 'SC',
+              name: 'South Carolina',
+              region: 'South',
+              x: 6,
+              y: 8,
+              value: 23
+          }, {
+              'hc-a2': 'SD',
+              name: 'South Dakota',
+              region: 'Midwest',
+              x: 3,
+              y: 4,
+              value: 18
+          }, {
+              'hc-a2': 'TN',
+              name: 'Tennessee',
+              region: 'South',
+              x: 5,
+              y: 7,
+              value: 142
+          }, {
+              'hc-a2': 'TX',
+              name: 'Texas',
+              region: 'South',
+              x: 7,
+              y: 4,
+              value: 178
+          }, {
+              'hc-a2': 'UT',
+              name: 'Utah',
+              region: 'West',
+              x: 5,
+              y: 4,
+              value: 66
+          }, {
+              'hc-a2': 'VT',
+              name: 'Vermont',
+              region: 'Northeast',
+              x: 1,
+              y: 10,
+              value: 25
+          }, {
+              'hc-a2': 'VA',
+              name: 'Virginia',
+              region: 'South',
+              x: 5,
+              y: 8,
+              value: 122
+          }, {
+              'hc-a2': 'WA',
+              name: 'Washington',
+              region: 'West',
+              x: 2,
+              y: 1,
+              value: 387
+          }, {
+              'hc-a2': 'WV',
+              name: 'West Virginia',
+              region: 'South',
+              x: 4,
+              y: 7,
+              value: 41
+          }, {
+              'hc-a2': 'WI',
+              name: 'Wisconsin',
+              region: 'Midwest',
+              x: 2,
+              y: 5,
+              value: 34
+          }, {
+              'hc-a2': 'WY',
+              name: 'Wyoming',
+              region: 'West',
+              x: 3,
+              y: 3,
+              value: 3
+          }]
+      }]
+  });
+
+  </script>
+</body>
+</html>
